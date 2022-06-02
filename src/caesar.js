@@ -8,50 +8,16 @@ const caesarModule = (function () {
 
   function caesar(input, shift, encode = true) {
     // your solution code here
+    //check for shift, return false if 0, <-25, or >25
     if(shift == 0 || shift < -25 || shift > 25) return false;
     let encoded = "";
+    //set input text to lowercase
     input = input.toLowerCase();
     if(encode == false){ 
+      //if false set shift to negative
       shift = -shift;
-    //   for(let i=0;i<input.length;i++){
-    //     const charCode = input[i];
-    //     if(charCode.charCodeAt() < 97 || charCode.charCodeAt() >
-    //     122) {
-    //       encoded += charCode;
-    //   }
-    //   else{
-    //     let newCharCode = charCode.charCodeAt(charCode + (+shift));
-    //     newCharCode = newCharCode - shift;
-    //     if(newCharCode < 97 || newCharCode >122){
-    //       newCharCode = newCharCode - 122 + 96;
-    //     }
-    //     if(newCharCode == 120 || newCharCode == 121 || newCharCode == 122){
-    //       newCharCode = newCharCode - 122 + 122;
-    //     }
-    //     encoded += String.fromCharCode(newCharCode);
-    //   }
-    // }
-  }
-  //if(encode == true){ 
-  //   for(let i=0;i<input.length;i++){
-  //     const charCode = input[i];
-  //     if(charCode.charCodeAt() < 97 || charCode.charCodeAt() >
-  //       122) {
-  //       encoded += charCode;
-  //   }
-  //   else{
-  //     let newCharCode = charCode.charCodeAt(charCode - (+shift));
-  //     newCharCode = newCharCode + (shift%26);
-  //     if(newCharCode < 97 || newCharCode >122){
-  //       newCharCode = newCharCode - 122 + 96;
-  //     }
-  //     if(newCharCode == 120 || newCharCode == 121 || newCharCode == 122){
-  //       newCharCode = newCharCode - 122 + 122;
-  //     }
-  //     encoded += String.fromCharCode(newCharCode);
-  //   }
-  // }
-//}
+    }
+    //loop thorugh the input and convert each character
 for (let i = 0; i < input.length; i++) {
   const charCode = input.charCodeAt(i);
 

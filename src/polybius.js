@@ -10,31 +10,39 @@ const polybiusModule = (function () {
     // your solution code here
     
     let result = "";
+    //creat mapping to encode and decode input
     const encoder = {'a': '11', 'b': '21', 'c': '31', 'd': '41', 'e': '51', 'f': '12', 'g': '22', 'h': '32', 'i': '42','j': '42', 'k': '52', 'l': '13', 'm': '23', 'n': '33', 'o': '43', 'p': '53', 'q': '14', 'r': '24', 's': '34', 't': '44', 'u': '54', 'v': '15', 'w': '25', 'x': '35', 'y': '45', 'z': '55' };
 const decoder = {'11': 'a', '21': 'b', '31': 'c', '41': 'd', '51': 'e', '12': 'f', '22': 'g', '32': 'h','42':'(i/j)',  '52': 'k', '13': 'l', '23': 'm', '33': 'n', '43': 'o', '53': 'p', '14': 'q', '24': 'r', '34': 's', '44': 't', '54': 'u', '15': 'v', '25': 'w', '35': 'x', '45': 'y', '55': 'z' };
 if (encode == true){
+  //loop through input, check if character is a space
   for(let i=0;i<input.length;i++){
     const char = input[i];
     if(char.charCodeAt()!== 32){
+      //add encoded code if not a space
       result+=encoder[char];
     }
     else{
+      //add the space if it is a space
       result+=char;
     }
         
   }
 }  
 if (encode == false){
+  //trim the input and check if it is odd length
   let trimmed = input.replace(/\s/g, '');
+  //return false if the length of the input string is odd
   if(trimmed.length%2==1) return false;
   let increment =1;
   for(let i=0;i<input.length;i+=increment){
+    //pair two numbers if neither is a space, decode and increment by 2
     if(input[i].charCodeAt()!==32 && input[i+1].charCodeAt()!==32){
       const char = input[i] + input[i+1];
       result+=decoder[char];
       increment=2;
     }
     else{
+      //if a space, add the space and increment by 1 to get the next pair
       char = input[i];
       result+=char;
       increment=1;
