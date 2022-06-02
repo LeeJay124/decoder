@@ -24,6 +24,9 @@ const caesarModule = (function () {
         if(newCharCode < 97 || newCharCode >122){
           newCharCode = newCharCode - 122 + 96;
         }
+        if(newCharCode == 120 || newCharCode == 121 || newCharCode == 122){
+          newCharCode = newCharCode - 122 + 122;
+        }
         encoded += String.fromCharCode(newCharCode);
       }
     }
@@ -37,11 +40,13 @@ const caesarModule = (function () {
     }
     else{
       let newCharCode = charCode.charCodeAt(charCode - (+shift));
-      newCharCode = newCharCode + shift;
+      newCharCode = newCharCode + (shift%26);
       if(newCharCode < 97 || newCharCode >122){
         newCharCode = newCharCode - 122 + 96;
       }
-    
+      if(newCharCode == 120 || newCharCode == 121 || newCharCode == 122){
+        newCharCode = newCharCode - 122 + 122;
+      }
       encoded += String.fromCharCode(newCharCode);
     }
   }
